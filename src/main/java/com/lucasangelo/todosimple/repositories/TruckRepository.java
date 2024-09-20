@@ -2,11 +2,14 @@ package com.lucasangelo.todosimple.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import com.lucasangelo.todosimple.models.Truck;
+import java.util.List;
 
 @Repository
 public interface TruckRepository extends JpaRepository<Truck, Long> {
-    // Aqui você pode adicionar consultas específicas, como busca por placa, se necessário
+    // Busca por placa
     Truck findByLicensePlate(String licensePlate);
+
+    // Busca por modelo
+    List<Truck> findByModel(String model);
 }
