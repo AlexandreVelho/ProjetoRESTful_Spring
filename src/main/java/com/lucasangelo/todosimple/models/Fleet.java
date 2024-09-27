@@ -10,6 +10,8 @@ public class Fleet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;  // Adicione esta linha
+
     @OneToMany
     private List<Truck> trucks;
 
@@ -17,6 +19,22 @@ public class Fleet {
     private List<Driver> drivers;
 
     // Getters e Setters
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {  // Adicione este método
+        return name;
+    }
+
+    public void setName(String name) {  // Adicione este método
+        this.name = name;
+    }
 
     public List<Truck> getTrucks() {
         return trucks;
