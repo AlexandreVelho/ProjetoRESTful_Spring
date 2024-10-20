@@ -23,4 +23,31 @@ return produtoRepository.findById(id).orElse(null);
 public void deletarProduto(Long id) {
 produtoRepository.deleteById(id);
 }
+public Produto atualizarProduto(Long id, Produto produto) {
+    // Lógica para buscar o produto pelo ID
+    Produto produtoExistente = buscarProdutoPorId(id);
+
+    // Verifica se o produto existe
+    if (produtoExistente == null) {
+        // Você pode lançar uma exceção ou lidar de outra forma
+        return null; // Ou lançar uma exceção personalizada
+    }
+
+    // Aplicar as atualizações
+    produtoExistente.setNome(produto.getNome());
+    produtoExistente.setPreco(produto.getPreco());
+    produtoExistente.setQuantidadeEmEstoque(produto.getQuantidadeEmEstoque());
+    
+    // Atualizar o tipo do produto (caso necessário)
+    // Verifique se o tipo do produto está sendo atualizado no JSON
+    if (produto.getTipo() != null) {
+        // Aqui você pode adicionar lógica para lidar com o tipo específico, 
+        // mas geralmente é mais seguro apenas manter o tipo existente se não for necessário alterá-lo
+        // produtoExistente.setTipoProduto(produto.getTipoProduto());
+    }
+
+    // Salve o produto atualizado
+    return produtoRepository.save(produtoExistente); // Salva as alterações no banco de dados
+}
+
 }

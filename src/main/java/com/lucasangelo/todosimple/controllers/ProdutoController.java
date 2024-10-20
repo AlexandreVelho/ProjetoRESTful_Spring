@@ -17,6 +17,11 @@ private ProdutoService produtoService;
 public List<Produto> listarProdutos() {
 return produtoService.listarProdutos();
 }
+@PutMapping("/{id}")
+    public ResponseEntity<Produto> atualizarProduto(@PathVariable Long id, @RequestBody Produto produto) {
+        Produto produtoAtualizado = produtoService.atualizarProduto(id, produto);
+        return ResponseEntity.ok(produtoAtualizado);
+    }
 @PostMapping
 public ResponseEntity<Produto> criarProduto(@RequestBody Produto produto) {
 Produto novoProduto = produtoService.salvarProduto(produto);
